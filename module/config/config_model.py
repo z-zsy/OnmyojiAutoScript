@@ -30,6 +30,7 @@ from tasks.GoldYoukai.config import GoldYoukai
 from tasks.Nian.config import Nian
 from tasks.KekkaiUtilize.config import KekkaiUtilize
 from tasks.KekkaiActivation.config import KekkaiActivation
+from tasks.KekkaiActivationSelf.config import KekkaiActivationSelf
 from tasks.DemonEncounter.config import DemonEncounter
 from tasks.DailyTrifles.config import DailyTrifles
 from tasks.TalismanPass.config import TalismanPass
@@ -100,6 +101,7 @@ class ConfigModel(ConfigBase):
     ryou_toppa: RyouToppa = Field(default_factory=RyouToppa)
     kekkai_utilize: KekkaiUtilize = Field(default_factory=KekkaiUtilize)
     kekkai_activation: KekkaiActivation = Field(default_factory=KekkaiActivation)
+    kekkai_activation_self: KekkaiActivationSelf = Field(default_factory=KekkaiActivationSelf)
     demon_encounter: DemonEncounter = Field(default_factory=DemonEncounter)
     daily_trifles: DailyTrifles = Field(default_factory=DailyTrifles)
     talisman_pass: TalismanPass = Field(default_factory=TalismanPass)

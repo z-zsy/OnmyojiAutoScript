@@ -196,5 +196,9 @@
   "remaining_players_help": "存活人数小于或等于该数值时主动退出，范围0至8；0表示不退出",
   "run_count": "执行次数",
   "coin_full_exit": "刷满鼬乐币",
-  "coin_full_exit_help": "检测到鼬乐币为600/600时结束百鬼棋局"
+  "coin_full_exit_help": "检测到鼬乐币为600/600时结束百鬼棋局",
+  "KekkaiActivationSelf": "结界挂卡-self",
+  "kekkai_activation_self_config": "结界挂卡-self配置",
+  "star_priority": "星级优先级",
+  "star_priority_help": "挂卡星级优先级排序，多个星级用>分隔，例如 5>6 表示优先选择5星卡，其次选择6星卡"
 }
