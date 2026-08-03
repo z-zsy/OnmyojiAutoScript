@@ -14,6 +14,7 @@ import random
 
 from module.atom.click import RuleClick
 from tasks.Component.GeneralBattle.assets import GeneralBattleAssets
+from tasks.Chess.assets import ChessAssets
 from tasks.Component.Login.service import LoginService
 from tasks.DailyTrifles.assets import DailyTriflesAssets
 from tasks.GlobalGame.assets import GlobalGameAssets
@@ -335,3 +336,45 @@ page_battle_team = Page(any_of(GeneralInviteAssets.I_GI_EMOJI_1, GeneralInviteAs
                         category="global", priority=25)
 page_battle_team_exit.connect(page_battle_team, GlobalGameAssets.I_UI_CANCEL, key="page_battle_team_exit->page_battle_team")
 page_battle_team.connect(page_battle_team_exit, GlobalGameAssets.I_UI_BACK_YELLOW, key="page_battle_team->page_battle_team_exit")
+
+# 闲庭仍会命中庭院主页标志，因此使用更高优先级先识别闲庭，再点击左上角返回庭院。
+page_relax = Page(
+    all_of(GameUiAssets.I_CHECK_MAIN, GameUiAssets.I_BACK_BROWN),
+    category="global",
+    priority=90,
+)
+page_relax.connect(page_main, GameUiAssets.I_BACK_BROWN, key="page_relax->page_main")
+
+# 町中区域页面: 娱乐与百鬼棋局
+page_entertainment = Page(GameUiAssets.I_CHECK_ENTERTAINMENT, category="global")
+page_entertainment.add_enter_success_hooks(ChessAssets.I_SKIP)
+page_town.connect(
+    page_entertainment,
+    GameUiAssets.I_TOWN_GOTO_ENTERTAINMENT,
+    key="page_town->page_entertainment",
+    on_enter_failure=[ChessAssets.I_SKIP],
+)
+
+page_chess = Page(GameUiAssets.I_CHECK_CHESS, category="global")
+page_entertainment.connect(
+    page_chess,
+    GameUiAssets.I_ENTERTAINMENT_GOTO_CHESS,
+    key="page_entertainment->page_chess",
+    on_leave_failure=[ChessAssets.I_SKIP],
+    on_enter_failure=[ChessAssets.I_SKIP],
+)
+page_chess.connect(
+    page_entertainment,
+    GlobalGameAssets.I_UI_BACK_YELLOW,
+    key="page_chess->page_entertainment",
+)
+page_entertainment.connect(
+    page_town,
+    GlobalGameAssets.I_UI_BACK_YELLOW,
+    key="page_entertainment->page_town",
+)
+
+page_hyakkisen = Page(GameUiAssets.I_CHECK_HYAKKISEN, category="global")
+page_hyakkisen.connect(page_town, GlobalGameAssets.I_UI_BACK_YELLOW, key="page_hyakkisen->page_town")
+page_town.connect(page_hyakkisen, GameUiAssets.I_TOWN_GOTO_HYAKKISEN, key="page_town->page_hyakkisen")
+
