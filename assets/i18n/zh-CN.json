@@ -184,5 +184,17 @@
   "guild_member_list": "寮成员列表",
   "guild_member_list_help": "填入要捐赠碎片的寮成员名称, 换行填写多个",
   "name_check": "名称检查",
-  "guild_donate_name_check_help": "若搜索名称后会出现多个结果, 则建议启用该项, 会使用OCR进行二次核对\n选择名称一致或相似度最高的一个好友名称且阈值>0.5"
+  "guild_donate_name_check_help": "若搜索名称后会出现多个结果, 则建议启用该项, 会使用OCR进行二次核对\n选择名称一致或相似度最高的一个好友名称且阈值>0.5",
+  "ocr": "OCR日志",
+  "save_ocr_log": "保存OCR识别日志",
+  "save_ocr_log_help": "默认关闭；开启后保存OCR输入图片和文字识别结果，用于调试识别问题",
+  "Chess": "百鬼棋局",
+  "chess_config": "百鬼棋局配置",
+  "early_exit": "是否提前退出",
+  "early_exit_help": "开启后在存活人数达到设定值时主动退出当前对局",
+  "remaining_players": "剩余人数",
+  "remaining_players_help": "存活人数小于或等于该数值时主动退出，范围0至8；0表示不退出",
+  "run_count": "执行次数",
+  "coin_full_exit": "刷满鼬乐币",
+  "coin_full_exit_help": "检测到鼬乐币为600/600时结束百鬼棋局"
 }
