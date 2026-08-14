@@ -1,0 +1,83 @@
+import numpy as np
+import time
+from pathlib import Path
+
+from numba import jit, njit, prange
+from datetime import datetime
+
+
+# @njit(cache=True, parallel=True)
+def image_reshape(data):
+    image_data = data / 255.0
+    image_data = np.transpose(image_data, (2, 0, 1))  # Channel firs
+    image_data = np.expand_dims(image_data, axis=0).astype(np.float32)
+    return image_data
+
+
+# @njit(cache=True, parallel=True)
+def data_filter(data, conf_threshold, iou_threshold):
+    data = np.transpose(data)
+    rows, columns = data.shape
+    boxes = []
+    scores = []
+    class_ids = []
+    for i in prange(rows):
+        classes_scores = data[i, 4:]
+        max_score = np.amax(classes_scores)
+        if max_score < conf_threshold:
+            continue
+        class_id = np.argmax(classes_scores)
+        cx, cy, w, h = data[i, :4]
+        cx = max(0, int(cx))
+        cy = max(0, int(cy))
+        w = min(640 - cx, int(w))
+        h = min(640 - cy, int(h))
+        x = max(0, cx - int(w / 2))
+        y = max(0, cy - int(h / 2))
+        if w <= 50 and h <= 50:
+            continue
+        boxes.append([cx, cy, w, h])
+        scores.append(max_score)
+        class_ids.append(class_id)
+    return class_ids, scores, boxes
+
+def char_to_hex(s):
+    sss =  s.encode('utf-8').hex()
+    # print(sss)
+    return sss
+
+def string_to_hex(s='ntcIH1GviU'):
+    resutls = ''
+    for c in s:
+        resutls += char_to_hex(c)
+    print(resutls)
+    return resutls  
+
+def hex_to_string(h):
+    return bytes.fromhex(h).decode('utf-8')
+
+
+def test_tensort():
+    import tensorrt as trt
+    import common
+    logger = trt.Logger()
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    yyy: str = string_to_hex('Z8Nj6PzDEA0YlybHb6-_oUaSuO0FpZqY0')
+    # ddd: str = string_to_hex('oashya_fp32.onnx')
+    # ddd: str = string_to_hex('oashya_int8.onnx')
+    # string_to_hex('ttracker.py')
+    # string_to_hex('server.py')
+    # string_to_hex('script.py')
+    # string_to_hex('script_task.py')
+    # print(hex_to_string(yyy))
+    # string_to_hex()
+    # test_tensort()
+    Watcher().run()
+

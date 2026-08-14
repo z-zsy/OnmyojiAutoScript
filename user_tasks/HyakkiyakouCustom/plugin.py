@@ -1,0 +1,75 @@
+# This Python file uses the following encoding: utf-8
+from user_tasks.HyakkiyakouCustom.config import HyakkiyakouCustom
+
+plugin_info = {
+    "task_name": "HyakkiyakouCustom",
+    "menu_category": "Daily Task",
+    "priority_after": "DemonEncounter",
+    "config_class": HyakkiyakouCustom,
+    "template_config": {
+        "scheduler": {
+            "enable": False,
+            "next_run": "2023-01-01 00:00:00",
+            "priority": 5,
+            "success_interval": "1d",
+            "failure_interval": "2h"
+        },
+        "hyakkiyakou_custom_config": {
+            "auto_sync_patches": True,
+            "hya_limit_time": "00:20:00",
+            "hya_limit_count": 10,
+            "hya_invite_friend": False,
+            "hya_onmyoji": "神乐",
+            "hya_auto_bean": False,
+            "hya_bean_threshold_low": 10,
+            "hya_priorities": "",
+            "hya_sp": 1.0,
+            "hya_ssr": 1.0,
+            "hya_sr": 0.7,
+            "hya_r": 0.3,
+            "hya_n": 0.0,
+            "hya_g": 0.0,
+            "hya_buff_prob_up": 2.2,
+            "hya_buff_speed_up": 2.0,
+            "hya_buff_add_beans": 2.0,
+            "hya_buff_slow_down": 2.0,
+            "hya_buff_freeze": 2.0
+        }
+    },
+    "i18n": {
+        "HyakkiyakouCustom": "百鬼夜行 (便携增强版)",
+        "hyakkiyakou_custom_config": "百鬼夜行基础配置",
+        "hyakkiyakou_custom_models": "百鬼夜行AI模型配置",
+        "debug_config": "百鬼夜行调试配置",
+        "auto_sync_patches": "自动在线同步式神补丁",
+        "auto_sync_patches_help": "开启后启动任务时自动联网比对网易官方最新式神录，自动下载并增量热加载缺失的新式神",
+        "hya_limit_time": "限制时间",
+        "hya_limit_time_help": "百鬼夜行运行的最大时间限制",
+        "hya_limit_count": "限制次数",
+        "hya_limit_count_help": "百鬼夜行挑战的最大票数限制",
+        "hya_invite_friend": "邀请好友",
+        "hya_invite_friend_help": "是否自动邀请好友进入百鬼夜行",
+        "hya_onmyoji": "切换阴阳师",
+        "hya_auto_bean": "自动调整豆子",
+        "hya_auto_bean_help": "开启后低价值式神砸5豆，遇到SSR/SP或末期自动切换10豆",
+        "hya_priorities": "优先式神名单",
+        "hya_priorities_help": "填写式神名称，多个用逗号隔开，享有最高投豆优先级",
+        "hya_sp": "SP式神权重",
+        "hya_ssr": "SSR式神权重",
+        "hya_sr": "SR式神权重",
+        "hya_r": "R式神权重",
+        "hya_n": "N式神权重",
+        "hya_g": "呱太权重",
+        "conf_threshold": "置信度阈值",
+        "iou_threshold": "NMS阈值",
+        "model_precision": "模型精度",
+        "inference_engine": "推理引擎",
+        "hya_show": "显示识别画面",
+        "hya_show_help": "运行期间弹出窗口实时绘制每一帧跟踪与锁定结果",
+        "hya_info": "输出调试信息",
+        "hya_save_result": "保存结算截图",
+        "hya_interval": "截屏间隔(ms)",
+        "hya_screenshot": "截屏方式",
+        "hya_control_method": "点击控制方式"
+    }
+}
